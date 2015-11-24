@@ -1,5 +1,4 @@
 import _                from "lodash";
-import generatePassword from "password-generator";
 
 function getQuery(credentials) {
   switch(credentials.provider) {
@@ -12,6 +11,7 @@ function getQuery(credentials) {
 }
 
 function getInfo(credentials) {
+  console.log(credentials);
   switch(credentials.provider) {
     case "google":
       return {
@@ -21,14 +21,18 @@ function getInfo(credentials) {
           .filter(email => email.type === "account")
           .first()
           .value,
-        password: generatePassword(20, false),
+        password:  null,
+        archived:  false,
+        confirmed: true,
       }
     case "facebook": {
       return {
         token: credentials.token,
         name:  credentials.profile.displayName,
         email: credentials.profile.email,
-        password: generatePassword(20, false),
+        password:  null,
+        archived:  false,
+        confirmed: true,
       }
     }
     default:

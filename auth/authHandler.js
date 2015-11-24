@@ -10,8 +10,15 @@ function authHandler(request, reply) {
   const credentials = credentialsFormatter(request.auth.credentials);
 
   User.findOrCreate(credentials.query, credentials.info, (err, user, created) => {
-    if (err) console.log(err);
-    return reply({ user: _.pick(user, "token", "name", "email")});
+    if (err) throw err;
+    return reply({
+      id:        user._id,
+      name:      user.name,
+      email:     user.email,
+      token:     user.token,
+      archived:  user.archived,
+      confirmed: user.confirmed,
+    });
   });
 }
 
