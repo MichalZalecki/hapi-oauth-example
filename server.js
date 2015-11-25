@@ -177,7 +177,6 @@ server.route({
     },
   },
   handler(request, reply) {
-    const credentials = credentia
     User.findOne({
       provider: "email",
       uid:      request.payload.email,
@@ -258,5 +257,5 @@ server.route({
 
 server.start(err => {
   if (err) throw err;
-  console.log(`Server started at: ${server.info.uri}`);
+  console.log(require("colors/safe").rainbow(`Server started at: ${server.info.uri}\r\n`));
 });

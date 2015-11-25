@@ -1,4 +1,4 @@
-import _                from "lodash";
+import _ from "lodash";
 
 function getQuery(credentials) {
   switch(credentials.provider) {
@@ -11,7 +11,6 @@ function getQuery(credentials) {
 }
 
 function getInfo(credentials) {
-  console.log(credentials);
   switch(credentials.provider) {
     case "google":
       return {
